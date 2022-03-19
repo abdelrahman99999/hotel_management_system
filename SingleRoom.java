@@ -6,16 +6,18 @@ class SingleRoom implements Serializable {
     private String name;
     private String contact;
     private String gender;
+    private int price;
 
     ArrayList<Food> food = new ArrayList<>();
 
     SingleRoom() {
         setName("");
     }
-    SingleRoom(String name, String contact, String gender){
+    SingleRoom(String name, String contact, String gender,int price){
         setName(name);
         setContact(contact);
         setGender(gender);
+        setPrice(price);
     }
 
     public String getName() {
@@ -24,6 +26,13 @@ class SingleRoom implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int p) {
+        this.price = p;
     }
 
     public String getContact() {

@@ -11,8 +11,8 @@ class DoubleRoom extends SingleRoom implements Serializable {
         setName2("");
     }
 
-    DoubleRoom(String name,String contact,String gender,String name2,String contact2,String gender2){
-        super(name, contact, gender);
+    DoubleRoom(String name,String contact,String gender,String name2,String contact2,String gender2,int price){
+        super(name, contact, gender,price);
         setName2(name2);
         setContact2(contact2);
         setGender2(gender2);
