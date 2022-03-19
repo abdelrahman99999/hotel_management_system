@@ -37,7 +37,6 @@ class Hotel{
             }
         }
         System.out.println("Choose the room that you want to book: ");
-        assert temp != null;
         no_of_rooms=temp.length;
         for(int i = 0;i < no_of_rooms; i++){
             if(temp[i] == null){
@@ -88,21 +87,18 @@ class Hotel{
             System.out.print("Enter gender: ");
             gender2 = sc.next();
         }
-
         switch (room_type) {
-            case 1 -> ob.drl[room_number] = new DoubleRoom(name, contact, gender, name2, contact2, gender2);
-            case 2 -> ob.drd[room_number] = new DoubleRoom(name, contact, gender, name2, contact2, gender2);
-            case 3 -> ob.srl[room_number] = new SingleRoom(name, contact, gender);
-            case 4 -> ob.srd[room_number] = new SingleRoom(name, contact, gender);
+            case 1 -> ob.drl[room_number] = new DoubleRoom(name, contact, gender, name2, contact2, gender2,5000);
+            case 2 -> ob.drd[room_number] = new DoubleRoom(name, contact, gender, name2, contact2, gender2,3500);
+            case 3 -> ob.srl[room_number] = new SingleRoom(name, contact, gender,2000);
+            case 4 -> ob.srd[room_number] = new SingleRoom(name, contact, gender,1200);
             default -> System.out.println("Wrong option");
         }
     }
-
     /*
     show features of each room type
     */
     static void features(int room_type){
-
         switch (room_type) {
             case 1 -> System.out.println("Number of double beds : 1\nAC : Yes\nFree breakfast : Yes\nCharge per day:5000 ");
             case 2 -> System.out.println("Number of double beds : 1\nAC : No\nFree breakfast : Yes\nCharge per day:3500  ");
@@ -132,34 +128,33 @@ class Hotel{
     }
 
     static void bill(int room_number, int room_type){
-        double amount=0;
         String[] list={"Sandwich","Pasta","Noodles","Coke"};
         System.out.println("\n*******");
         System.out.println(" Bill:-");
         System.out.println("*******");
-
-        SingleRoom[] temp=rooms_of_roomType(room_type);
-        switch (room_type){
-            case 1 -> amount += 5000;
-            case 2 -> amount+=3500;
-            case 3 -> amount+=2000;
-            case 4 -> amount+=1200;
-            default ->{
+        SingleRoom r=ob.getRoom(room_number, room_type);
+        
+        //SingleRoom[] temp=rooms_of_roomType(room_type);
+        if(r==null){
                 System.out.println("Not valid");
                 return ;
-            }
         }
-        System.out.println("Room Charge - "+amount);
-        System.out.println("\nFood Charges:- ");
-        System.out.println("===============");
-        System.out.println("Item   Quantity    Price");
-        System.out.println("-------------------------");
-        assert temp != null;
-        for(Food bi:temp[room_number].food)
-        {
-            amount+= bi.getPrice();
-            String format = "%-10s%-10s%-10s%n";
-            System.out.printf(format,list[bi.getItem_no() -1], bi.getQuantity(), bi.getPrice());
+        
+        double amount= r.getPrice();
+        System.out.println("Room Charge - "+ amount);
+        
+        if(!r.food.isEmpty()){
+            System.out.println("\nFood Charges:- ");
+            System.out.println("===============");
+            System.out.println("Item   Quantity    Price");
+            System.out.println("-------------------------");
+
+            for(Food bi:r.food)
+            {
+                amount+= bi.getPrice();
+                String format = "%-10s%-10s%-10s%n";
+                System.out.printf(format,list[bi.getItem_no() -1], bi.getQuantity(), bi.getPrice());
+            }
         }
         System.out.println("\nTotal Amount- "+amount);
     }
