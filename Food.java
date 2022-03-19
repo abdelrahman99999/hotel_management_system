@@ -2,7 +2,7 @@ package com.mycompany.hotel_management_system;
 
 import java.io.*;
 
-public class Food implements Serializable
+public class Food implements Serializable{
     private int item_no;
     private int quantity;
     private int price;
