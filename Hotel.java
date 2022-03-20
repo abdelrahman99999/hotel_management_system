@@ -172,7 +172,7 @@ class Hotel{
                 int i = sc.nextInt();
                 System.out.print("Quantity- ");
                 int q = sc.nextInt();
-                if(i <= 4 && q >= 0) {
+                if(i <= 4) {
                     ob.getRoom(room_number,room_type).food.add(new Food(i, q));
                 }else {
                     System.out.println("Invalid choice");
@@ -186,7 +186,9 @@ class Hotel{
             if(wish == 'y' || wish == 'Y'){
                 bill(room_number, room_type);
             }
+            System.out.println("Successfully order");
         }
+        
     }
 
     static void deallocate(int room_number, int room_type){
