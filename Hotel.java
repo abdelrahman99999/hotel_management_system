@@ -170,12 +170,14 @@ class Hotel{
             do {
                 System.out.print("Enter your choice- ");
                 int i = sc.nextInt();
-                System.out.print("Quantity- ");
-                int q = sc.nextInt();
-                if(i <= 4) {
+                int q;
+                if(i <= 4 && i>0) {
+                    System.out.print("Quantity- ");
+                    q = sc.nextInt();
                     ob.getRoom(room_number,room_type).food.add(new Food(i, q));
                 }else {
                     System.out.println("Invalid choice");
+                    return;
                 }
                 System.out.println("Do you want to order anything else ? (y/n)");
                 wish=sc.next().charAt(0);
